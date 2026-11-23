@@ -18,7 +18,7 @@ BASE = Path(__file__).resolve().parent
 
 # Argumentos de la imagen
 parser = argparse.ArgumentParser(description="Reconocer texto manuscrito con Kraken.")
-parser.add_argument("--imagen", "-i", default=str(BASE / "entrada.jpg"))
+parser.add_argument("--imagen", "-i", default=str(BASE.parent / "imagenes_prueba" / "entrada.png"))
 args = parser.parse_args()
 
 # Leer la ruta personal del modelo
