@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Path personal del modelo kraken
+/folio2doc/config/config.json
+
+# Imágenes resultados de pruebas
+/folio2doc/resultados/
