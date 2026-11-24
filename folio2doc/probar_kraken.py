@@ -21,6 +21,24 @@ parser = argparse.ArgumentParser(description="Reconocer texto manuscrito con Kra
 parser.add_argument("--imagen", "-i", default=str(BASE.parent / "imagenes_prueba" / "entrada.png"))
 args = parser.parse_args()
 
+# Convertir la imagen a PNG (pasarlo luego a main.py)
+ruta_imagen = Path(args.imagen)
+
+if ruta_imagen.suffix.lower() != ".png":
+    imagen = cv.imread(str(ruta_imagen))
+
+    if imagen is None:
+        raise SystemExit(f"No se pudo leer la imagen: {ruta_imagen}")
+
+    ruta_png = BASE / "resultados" / f"{ruta_imagen.stem}.png"
+    ruta_png.parent.mkdir(exist_ok=True)
+
+    if not cv.imwrite(str(ruta_png), imagen):
+        raise SystemExit("No se pudo convertir la imagen a PNG.")
+
+    ruta_imagen = ruta_png
+
+
 # Leer la ruta personal del modelo
 try:
     with open(BASE / "config" / "config.json", encoding="utf-8") as f:
@@ -52,7 +70,7 @@ cv.imwrite(str(ruta_resultados / "lineas_detectadas.png"), dibujar_lineas(folio.
 # Pasar a RGB para PIL
 im = Image.fromarray(cv.cvtColor(folio.color, cv.COLOR_BGR2RGB))
 
-seg = a_segmentacion_kraken(lineas, "folio.png")
+seg = a_segmentacion_kraken(lineas, str(args.imagen))
 modelo = RecognitionTaskModel.load_model(str(ruta_modelo))
 
 for registro in modelo.predict(im, seg, RecognitionInferenceConfig()):
