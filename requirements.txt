@@ -1,0 +1,24 @@
+
+# Folio2Doc - Dependencias de Python
+# Entorno de referencia: Python 3.11 / Ubuntu WSL2
+# Versiones observadas: noviembre de 2026
+
+# Reconocimiento manuscrito
+kraken==7.1.1
+
+# Preprocesamiento de imágenes
+opencv-python==5.0.0.93
+numpy==2.4.6
+Pillow==13.0.0
+
+# Detección de posibles errores ortográficos
+pyspellchecker==0.9.1
+
+# Backend de reconocimiento
+# PyTorch y Torchvision se instalarán mediante el
+# instalador, con una configuración compatible
+# con el sistema y la disponibilidad de CUDA.
+#
+# Entorno actual:
+# torch==2.14.0
+# torchvision==0.29.2

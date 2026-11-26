@@ -224,3 +224,6 @@ __marimo__/
 
 # Imágenes resultados de pruebas
 /folio2doc/resultados/
+
+# Pruebas de confianza de Kraken
+/folio2doc/diagnostico_confianza.py
